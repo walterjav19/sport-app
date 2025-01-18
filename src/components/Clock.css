@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Digital';
+    src: url(./fonts/DS-DIGI.TTF) format('truetype'),
+         url(./fonts/DS-DIGIB.TTF) format('truetype');
+}
+
+.digital-clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10em;
+    font-family: 'Digital', sans-serif;
+    background-color: #000;
+    text-shadow: 
+        0 0 6px rgba(202, 228, 225, 0.92),
+        0 0 20px rgba(202, 228, 225, 0.34),
+        0 0 12px rgba(30, 132, 242, 0.52),
+        0 0 21px rgba(30, 132, 242, 0.92),
+        0 0 24px rgba(30, 132, 242, 0.78),
+        0 0 44px rgba(30, 132, 242, 0.92);
+}
+
+.time {
+    font-size: 3em;
+    color: white;
+    margin: 0; /* Eliminar margen superior e inferior */
+}
+
+.date {
+    font-size: 1.3em;
+    color: #ccc;
+    font-family: Digital;
+    margin-top: 0.2em; /* Ajustar margen superior */
+}
