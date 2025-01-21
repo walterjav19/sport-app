@@ -10,7 +10,7 @@ export default function Carrousel({images}) {
             key={index}
             className="object-cover w-full h-full"
             src={image}
-            alt=""
+            alt="image"
           />
         ))}
       </Carousel>

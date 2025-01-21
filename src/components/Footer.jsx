@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="mb-6 md:mb-0">
             <a href="https://flowbite.com/" className="flex items-center">
               <img src="./goat.png" className="h-8 me-3" alt="App Logo" />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Sport App</span>
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Sport Goats</span>
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-1">
