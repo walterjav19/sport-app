@@ -6,14 +6,21 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Carrousel from "./components/Carrousel";
 import Carta from "./components/Card";
+import Loading from "./components/Spinner";
 
 const keyWords = ["soccer", "futbol", "uefa", "conmebol", "fifa"];
+const Languages=[  
+  { code: "es", image: "./espana.png" },
+  { code: "en", image: "./estados-unidos.png" }
+];
+const RandomLanguage = Languages[Math.floor(Math.random() * Languages.length)];
 const RandomKeyWord = keyWords[Math.floor(Math.random() * keyWords.length)];
 const news_api_key = import.meta.env.VITE_NEWS_API_KEY;
-const url = `https://newsapi.org/v2/everything?q=${RandomKeyWord}&apiKey=${news_api_key}`;
+const url = `https://newsapi.org/v2/everything?q=${RandomKeyWord}&apiKey=${news_api_key}&language=${RandomLanguage.code}`;
 
 function App() {
   const [articles, setArticles] = useState([]); // Maneja los datos de la API
+  const [Lenguage, setLenguage] = useState(RandomLanguage.image);
 
   useEffect(() => {
     axios
@@ -31,7 +38,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar Language={Lenguage} setLanguage={setLenguage}/>
       <Carrousel images={["./pessi.jpeg", "./penaldo.jpg", "./vini.jpeg", "./jordan.jpg", "./brady.png"]} />
       <Clock />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
@@ -45,7 +52,7 @@ function App() {
             />
           ))
         ) : (
-          <p>Cargando noticias...</p>
+          <Loading />
         )}
       </div>
       <Footer />
