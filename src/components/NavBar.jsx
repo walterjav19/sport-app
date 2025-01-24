@@ -2,6 +2,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'  
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 
 
@@ -19,17 +20,17 @@ export default function NavBar({Language, setLanguage}) {
 
 
 
-  const [News, setNews] = useState(true)
+  const [News, setNews] = useState(false)
   const [Futbol, setFutbol] = useState(false)
   const [NBA, setNBA] = useState(false)
   const [NFL, setNFL] = useState(false)
   
   const navigation = [
 
-    { name: 'News', href: '#', current: News },
-    { name: 'Futbol', href: '#', current: Futbol },
-    { name: 'NBA', href: '#', current: NBA },
-    { name: 'NFL', href: '#', current: NFL },
+    { name: 'News', href: '/news', current: News },
+    { name: 'Futbol', href: '/futbol', current: Futbol },
+    { name: 'NBA', href: '/nba', current: NBA },
+    { name: 'NFL', href: '/nfl', current: NFL },
   ]
 
 

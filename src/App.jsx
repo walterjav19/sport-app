@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import Clock from "./components/clock";
@@ -17,6 +18,17 @@ const RandomLanguage = Languages[Math.floor(Math.random() * Languages.length)];
 const RandomKeyWord = keyWords[Math.floor(Math.random() * keyWords.length)];
 const news_api_key = import.meta.env.VITE_NEWS_API_KEY;
 const url = `https://newsapi.org/v2/everything?q=${RandomKeyWord}&apiKey=${news_api_key}&language=${RandomLanguage.code}`;
+
+// Plantilla simple para las secciones Futbol, NBA y NFL
+function SimpleTemplate({ title }) {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-4xl font-bold">{title}</h1>
+      <p className="text-lg mt-4">Contenido en desarrollo...</p>
+    </div>
+  );
+}
+
 
 function App() {
   const [articles, setArticles] = useState([]); // Maneja los datos de la API
@@ -37,26 +49,36 @@ function App() {
   }, []); // Solo se ejecuta una vez
 
   return (
-    <>
+    <Router>
       <NavBar Language={Lenguage} setLanguage={setLenguage}/>
-      <Carrousel images={["./pessi.jpeg", "./penaldo.jpg", "./vini.jpeg", "./jordan.jpg", "./brady.png"]} />
-      <Clock />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-        {articles.length > 0 ? (
-          articles.map((article, index) => (
-            <Carta
-              key={index}
-              image={article.urlToImage || "./placeholder.jpg"} // Si no hay imagen, usa un placeholder
-              title={article.title}
-              description={article.description}
-            />
-          ))
-        ) : (
-          <Loading />
-        )}
-      </div>
-      <Footer />
-    </>
+      <Routes>
+        {/* Ruta por defecto que redirige a /news */}
+        <Route path="/" element={<Navigate to="/news" />} />
+        <Route path="/news" element={
+          <>
+          <Carrousel images={["./pessi.jpeg", "./penaldo.jpg", "./vini.jpeg", "./jordan.jpg", "./brady.png"]} />
+          <Clock />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+            {articles.length > 0 ? (
+              articles.map((article, index) => (
+                <Carta
+                  key={index}
+                  image={article.urlToImage || "./placeholder.jpg"} // Si no hay imagen, usa un placeholder
+                  title={article.title}
+                  description={article.description}
+                />
+              ))
+            ) : (
+              <Loading />
+            )}
+          </div>
+          <Footer />
+        </>} />
+        <Route path="/futbol" element={<SimpleTemplate title="Futbol" />} />
+        <Route path="/nba" element={<SimpleTemplate title="NBA" />} />
+        <Route path="/nfl" element={<SimpleTemplate title="NFL" />} />
+      </Routes>
+    </Router>
   );
 }
 

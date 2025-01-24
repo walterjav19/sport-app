@@ -1,9 +1,9 @@
 import { Card } from "flowbite-react";
 
-export default function Carta({image,title,description}) {
+export default function Carta({ image, title, description }) {
   return (
     <Card
-      className="max-w-sm"
+      className="max-w-sm transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
       imgAlt={`cardimage${title}`}
       imgSrc={image}
     >
